@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""module that Defines the BaseModel Class"""
+#module that Defines the BaseModel Class
 from uuid import uuid4
 from datetime import datetime
 import models
@@ -16,15 +16,28 @@ class BaseModel():
         __repr__(self)
         to_dict(self)
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Initialization method, called each time an instance is created.
         Initialization attributes: uuid4, dates when class was updated/created        
         """
         date_format = '%Y-%m-%dT%H:%M:%S.%f'
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            for key, value in kwargs.items():
+                if "created_at" == key:
+                    self.created_at = datetime.strptime(kwargs["created_at"],
+                                                        date_format)
+                elif "updated_at" == key:
+                    self.updated_at = datetime.strptime(kwargs["updated_at"],
+                                                        date_format)
+                elif "__class__" == key:
+                    pass
+                else:
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Method to set the string representation of BaseModel object.
