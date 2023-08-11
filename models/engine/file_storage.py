@@ -2,6 +2,7 @@
 """Project File Storage"""
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -19,7 +20,7 @@ class FileStorage:
 
     __objects = {}
     __file_path = "file.json"
-    class_dict = {"BaseModel": BaseModel}
+    class_dict = {"BaseModel": BaseModel, "User": User}
 
     def all(self):
         """Return dictionary of <class>.<id> : object instance"""
@@ -50,7 +51,3 @@ class FileStorage:
                     type(self).__objects[key] = obj            
         except FileNotFoundError:
             pass
-
-    def new(self, obj):
-        name = obj.__class__.__name__
-        FileStorage.__objects[name + "." + obj.id] = obj.to_dict()
