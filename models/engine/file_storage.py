@@ -9,6 +9,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class FileStorage:
     """storage engine for AirBnB clone project
     Class Methods:
@@ -23,8 +24,10 @@ class FileStorage:
     """
 
     __objects = {}
-    __file_path = "file.json"
-    class_dict = {"BaseModel": BaseModel, "User": User, "Place":Place, "State":State, "City":City,"Amenity":Amenity,"Review":Review}
+    __file_path = 'file.json'
+    class_dict = {"BaseModel": BaseModel, "User": User, "Place": Place,
+                  "State": State, "City": City, "Amenity": Amenity,
+                  "Review": Review}
 
     def all(self):
         """Return dictionary of <class>.<id> : object instance"""
@@ -52,6 +55,6 @@ class FileStorage:
                 new_obj_dict = json.load(f)
                 for key, value in new_obj_dict.items():
                     obj = self.class_dict[value['__class__']](**value)
-                    type(self).__objects[key] = obj            
+                    type(self).__objects[key] = obj
         except FileNotFoundError:
             pass
