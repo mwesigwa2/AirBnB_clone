@@ -72,7 +72,6 @@ class TestBaseModel(unittest.TestCase):
         my_model_2 = BaseModel()
         self.assertNotEqual(my_model_1.id, my_model_2.id)
 
-         
     def test_base_model_normal_to_dict(self):
         """
         Test to show is a to_dict representation of
