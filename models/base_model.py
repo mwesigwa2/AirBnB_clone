@@ -38,6 +38,7 @@ class BaseModel():
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """Method to set the string representation of BaseModel object.
@@ -55,6 +56,7 @@ class BaseModel():
         -    
         """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """
