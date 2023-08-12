@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+<<<<<<< HEAD
 """
 Definititon of user class
 """
@@ -15,6 +16,14 @@ class User(BaseModel):
         first_name (string): Users first name.
         last_name (string): Users last name.
     """
+=======
+# module that defines the class User
+from models.base_model import BaseModel
+
+
+class User(BaseModel):
+    """User class that inherits from BaseModel"""
+>>>>>>> 6a2a1a848a83016ff60690bab2a9ffa6868299aa
     email = ""
     password = ""
     first_name = ""
