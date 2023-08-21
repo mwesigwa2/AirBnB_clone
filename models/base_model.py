@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#module that Defines the BaseModel Class
+# module that Defines the BaseModel Class
 from uuid import uuid4
 from datetime import datetime
 import models
@@ -19,7 +19,7 @@ class BaseModel():
     def __init__(self, *args, **kwargs):
         """
         Initialization method, called each time an instance is created.
-        Initialization attributes: uuid4, dates when class was updated/created        
+        Initialization attributes: uuid4, dates when class was updated/created
         """
         date_format = '%Y-%m-%dT%H:%M:%S.%f'
         if kwargs:
@@ -44,7 +44,8 @@ class BaseModel():
         """Method to set the string representation of BaseModel object.
         Return the class name, id and the dictionary
         """
-        return ('[{}] ({}) {}'.format(self.__class__.__name__, self.id, self.__dict__))
+        return ('[{}] ({}) {}'.
+                format(self.__class__.__name__, self.id, self.__dict__))
 
     def __repr__(self):
         """returns string repr"""
@@ -53,7 +54,7 @@ class BaseModel():
     def save(self):
         """
         - Updates the public attribute `updated_at` with the current time
-        -    
+        -
         """
         self.updated_at = datetime.now()
         models.storage.save()
@@ -61,8 +62,9 @@ class BaseModel():
     def to_dict(self):
         """
         returns the dictionary of the BaseModel with string formats of time,
-        A dictionary containing all the keys/value of __dict__ method of the instance. 
-        A key __class__ is added to this dictionary with the class name of the object
+        A dictionary containing all the keys/value of __dict__ method of
+        the instance. A key __class__ is added to this dictionary with the
+        class name of the object
         """
         result = self.__dict__.copy()
         result["created_at"] = self.created_at.isoformat()
